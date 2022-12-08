@@ -46,3 +46,48 @@ question5 = {
   ifCorrect: 'This quiz is written in Javascript. 🥳',
   ifWrong: 'Thats not right. Its Javascript, the same langauge in which this quiz is written.',
 }
+let questionSet = [question1,question2,question3,question4,question5];
+
+function playGame(question,answer,ifCorrect,ifWrong,i){
+  
+  console.log(chalk.hex('#ffa801')(`\n------------------------ Question ${i+1} ------------------------`));
+  var userAnswer = readlineSync.question(chalk.hex('#ffa801')(question));
+  if(userAnswer.toUpperCase()===answer.toUpperCase()){
+    console.log(chalk.hex('#16C60C')('CORRECT ✔️'));
+    console.log(chalk.hex('#16C60C')(ifCorrect));
+    score++;
+  }
+  else{
+    console.log(chalk.hex('#F03A17')('INCORRECT ❌'));
+    console.log(chalk.hex('#F03A17')(ifWrong));
+  }
+  console.log(chalk.hex('#AF5FAF')("------------------------------------------------------------"));
+  console.log(chalk.hex('#AF5FAF')('YOUR CURRENT SCORE : '+score));
+  console.log(chalk.hex('#AF5FAF')("------------------------------------------------------------\n\n"));
+}
+
+for(let i=0;i<questionSet.length;i++){
+    currentQuestion = questionSet[i];
+    playGame(currentQuestion.question,currentQuestion.answer,currentQuestion.ifCorrect,currentQuestion.ifWrong,i);
+}
+
+
+console.log(chalk.hex('#AF5FAF')('Thanks for playing. Hope you liked it! Share it with more people.\nYOUR TOTAL SCORE IS: '+score+"\n"));
+
+function greet(userName)
+{
+  CFonts.say(`Hello ${userName}`, {
+    font: 'tiny',              // define the font face
+    align: 'left',              // define text alignment
+    colors: ['#844b93'],         // define all colors
+    background: 'transparent',  
+    letterSpacing: 1,           // define letter spacing
+    lineHeight: 1,              // define the line height
+    space: true,                
+    maxLength: '0',             // define how many character can be on one line
+    gradient: false,            // define your two gradient colors
+    independentGradient: false, 
+    transitionGradient: false,  
+    env: 'node'                 // define the environment CFonts is being executed in
+});
+}
